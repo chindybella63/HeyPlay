@@ -50,13 +50,27 @@
                             <div class="spacer-10"></div>
 
                             @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
+
+                            @if (session('success'))
+                            <div class="alert alert-success">{{ session('success') }}</div>
+                            @endif
+
+                            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             @endif
 
                             <form name="registerForm" id="register_form" class="form-border" method="POST"
@@ -67,54 +81,48 @@
                                     <div class="col-md-6">
                                         <div class="field-set">
                                             <label>Name:</label>
-                                            <input type="text" name="name" id="name" class="form-control"
-                                                value="{{ old('name') }}">
+                                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
                                             <label>Email Address:</label>
-                                            <input type="email" name="email" id="email" class="form-control"
-                                                value="{{ old('email') }}">
+                                            <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
                                             <label>Choose a Username:</label>
-                                            <input type="text" name="username" id="username" class="form-control"
-                                                value="{{ old('username') }}">
+                                            <input type="text" name="username" id="username" class="form-control" value="{{ old('username') }}" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
                                             <label>Phone:</label>
-                                            <input type="text" name="phone" id="phone" class="form-control"
-                                                value="{{ old('phone') }}">
+                                            <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone') }}" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
                                             <label>Password:</label>
-                                            <input type="password" name="password" id="password" class="form-control">
+                                            <input type="password" name="password" id="password" class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
                                         <div class="field-set">
                                             <label>Re-enter Password:</label>
-                                            <input type="password" name="password_confirmation"
-                                                id="password_confirmation" class="form-control">
+                                            <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="col-md-12">
                                         <div id="submit" class="pull-left">
-                                            <input type="submit" id="btn_register" value="Register Now"
-                                                class="btn-main color-2">
+                                            <input type="submit" id="btn_register" value="Register Now" class="btn-main color-2">
                                         </div>
                                         <div class="clearfix"></div>
                                     </div>

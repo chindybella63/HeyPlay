@@ -27,19 +27,46 @@
                                 <div class="padding40 rounded-3 shadow-soft" data-bgcolor="#ffffff">
                                     <h4>Login</h4>
                                     <div class="spacer-10"></div>
-                                    <form id="form_register" class="form-border" method="post"
-                                        action="https://www.designesia.com/themes/rentaly/account-dashboard.html">
+                                    @if (session('success'))
+                                    <div class="alert alert-success">{{ session('success') }}</div>
+                                    @endif
+
+                                    @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul class="mb-0">
+                                            @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    @endif
+
+                                    <form id="form_login" class="form-border" method="POST" action="{{ route('login.store') }}">
+                                        @csrf
+
                                         <div class="field-set">
-                                            <input type="text" name="name" id="name" class="form-control"
-                                                placeholder="Your Name" />
+                                            <input type="text" name="login" id="login" class="form-control"
+                                                placeholder="Email atau Username" value="{{ old('login') }}" required autofocus />
                                         </div>
+
                                         <div class="field-set">
-                                            <input type="text" name="name" id="name" class="form-control"
-                                                placeholder="Your Name" />
+                                            <input type="password" name="password" id="password" class="form-control"
+                                                placeholder="Password" required />
                                         </div>
+
+                                        <div class="field-set">
+                                            <label style="cursor:pointer;">
+                                                <input type="checkbox" name="remember" value="1"> Ingat saya
+                                            </label>
+                                        </div>
+
                                         <div id="submit">
-                                            <input type="submit" id="send_message" value="Sign In"
+                                            <input type="submit" id="btn_login" value="Sign In"
                                                 class="btn-main btn-fullwidth rounded-3" />
+                                        </div>
+
+                                        <div class="clearfix" style="margin-top:15px; text-align:center;">
+                                            Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
                                         </div>
                                     </form>
                                     <div class="title-line">Or&nbsp;sign&nbsp;up&nbsp;with</div>

@@ -8,7 +8,7 @@
                             <div class="topbar-widget"><a href="#"><i class="fa fa-clock-o"></i>Mon - Fri 08.00 - 18.00</a></div>
                         </div>
                     </div>
-                
+
                     <div class="topbar-right">
                         <div class="social-icons">
                             <a href="#"><i class="fa fa-facebook fa-lg"></i></a>
@@ -17,7 +17,7 @@
                             <a href="#"><i class="fa fa-pinterest fa-lg"></i></a>
                             <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
                         </div>
-                    </div>  
+                    </div>
                     <div class="clearfix"></div>
                 </div>
             </div>
@@ -41,15 +41,7 @@
                                 <ul id="mainmenu">
                                     <li><a class="menu-item" href="/">Home</a>
                                     </li>
-                                    <li><a class="menu-item" href="cars.html">Cars</a>
-                                        <ul>
-                                            <li><a class="menu-item" href="cars.html">Cars List 1</a></li>
-                                            <li><a class="menu-item" href="02_dark-cars.html">Cars List 1 Dark</a></li>
-                                            <li><a class="menu-item" href="cars-list.html">Cars List 2</a></li>
-                                            <li><a class="menu-item" href="02_dark-cars-list.html">Cars List 2 Dark</a></li>
-                                            <li><a class="menu-item" href="car-single.html">Cars Single</a></li>
-                                            <li><a class="menu-item" href="02_dark-car-single.html">Cars Single Dark</a></li>
-                                        </ul>
+                                    <li><a class="menu-item" href="/katalog">Katalog</a>
                                     </li>
                                     <li><a class="menu-item" href="quick-booking.html">Booking</a>
                                         <ul>
@@ -92,7 +84,7 @@
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a class="menu-item" href="#">Elements</a>
+                                    <!-- <li><a class="menu-item" href="#">Elements</a>
                                         <ul>
                                             <li><a class="menu-item" href="preloader.html">Preloader</a></li>
                                             <li><a class="menu-item" href="icon-boxes.html">Icon Boxes</a></li>
@@ -108,12 +100,32 @@
                                             <li><a class="menu-item" href="tabs.html">Tabs</a></li>
                                             <li><a class="menu-item" href="tooltips.html">Tooltips</a></li>
                                         </ul>
-                                    </li>
+                                    </li> -->
                                 </ul>
                             </div>
                             <div class="de-flex-col">
                                 <div class="menu_side_area">
-                                    <a href="login.html" class="btn-main">Sign In</a>
+
+                                    @auth('web')
+                                    <span style="display:inline-flex; align-items:center; gap:10px; margin-right:12px; vertical-align:middle;">
+                                        <span style="width:36px; height:36px; border-radius:50%; background:#17a34a; color:#fff; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">
+                                            {{ strtoupper(mb_substr(Auth::guard('web')->user()->name, 0, 1)) }}
+                                        </span>
+                                        <span style="font-weight:600;">
+                                            Hai, {{ \Illuminate\Support\Str::words(Auth::guard('web')->user()->name, 1, '') }}
+                                        </span>
+                                    </span>
+
+                                    <form method="POST" action="{{ route('logout') }}" style="display:inline-block; margin:0;">
+                                        @csrf
+                                        <button type="submit" class="btn-main" style="border:0; cursor:pointer;">Logout</button>
+                                    </form>
+                                    @endauth
+
+                                    @guest('web')
+                                    <a href="{{ route('login') }}" class="btn-main">Sign In</a>
+                                    @endguest
+
                                     <span id="menu-btn"></span>
                                 </div>
                             </div>
